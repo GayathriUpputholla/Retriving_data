@@ -10,14 +10,14 @@
         <h1>DISPLAY_ACCESSRECORD</h1>
         <table border="3px">
             <tr>
-                <th>topic_name</th>
+                <th>name</th>
                 <th>date</th>
                 <th>authour</th>
             </tr>
            {% for ao in accessrecord %}
            <tr>
 
-            <td>{{ao.topic_name}}</td>
+            <td>{{ao.name}}</td>
             <td>{{ao.date}}</td>
             <td>{{ao.authour}}</td>
             </tr>
