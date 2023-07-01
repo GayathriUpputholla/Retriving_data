@@ -2,6 +2,7 @@ from django.shortcuts import render
 from app.models import* 
 from django.db.models.functions import Length
 from django.db.models import Q
+from django.http import HttpResponse
 
 # Create your views here.
 def display_topic(requsest):
@@ -22,6 +23,7 @@ def display_webpage(request):
     webpages=Webpage.objects.filter(name__contains='o')
     webpages=Webpage.objects.filter(name__in=['sachin','dhoni'])
     webpages=Webpage.objects.filter(Q(name='dhoni')|Q(url__startswith='https'))
+    webpages=Webpage.objects.all()
 
 
     
@@ -51,5 +53,45 @@ def display_accessrecord(request):
     d={'accessrecord':accessrecord}
     return render(request,'display_accessrecord.html',d)
 
+
+def update_webpage(request):
+    # Webpage.objects.filter(name='sachin').update(url='https://schin.in')
+    #Webpage.objects.filter(topic_name='cricket').update(url='https://india.in')
+    #Webpage.objects.filter(name='msd dhoni').update(url='https://msd.in')
+    #Webpage.objects.filter(name='ramesh').update(url='BCCI CRICKET')
+    # Webpage.objects.filter(name='raj').update(url='https://raj.in')
+    #Webpage.objects.update_or_create(name='raj',defaults={'url':'http://raj.com'})
+
+
+    CTO=Topic.objects.get(topic_name='cricket')
+    #Webpage.objects.update_or_create(name='raj',defaults={'topic_name':CTO})
+    #Webpage.objects.update_or_create(name='raj',defaults={'topic_name':CTO,'url':'http://raj.com'})
+
+
+
+
+    
+     
+
+
+
+
+
+
+
+    
+    d={'webpages':Webpage}
+    return render(request,'diplay_webpage.html',d)
+
+
+
+def delete_webpage(request):
+    d={'webpages':Webpage}
+    Webpage.objects.filter(name='raj').delete()
+    return render(request,'diplay_webpage.html',d)
+
+    
+
+    
 
 
